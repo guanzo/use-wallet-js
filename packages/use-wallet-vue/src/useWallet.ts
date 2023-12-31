@@ -4,7 +4,8 @@ import { inject, computed } from 'vue'
 
 export function useWallet() {
   const manager = inject<WalletManager>('walletManager')
-  const state = inject<State>('walletState')
+  const stateRef = inject<State>('walletState')
+  const state = stateRef.value
 
   if (!manager || !state) {
     throw new Error('WalletManager plugin is not properly installed')

@@ -1,13 +1,13 @@
 import { WalletManager, type WalletManagerConfig, defaultState } from '@txnlab/use-wallet-js'
-import { reactive, readonly } from 'vue'
+import { ref, readonly } from 'vue'
 
 export const WalletManagerPlugin = {
   install(app: any, options: WalletManagerConfig) {
     const manager = new WalletManager(options)
-    let state = reactive({ ...defaultState })
+    let state = ref({ ...defaultState })
 
     manager.subscribe((newState) => {
-      state = { ...newState }
+      state.value = { ...newState }
     })
 
     app.provide('walletManager', manager)
